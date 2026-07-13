@@ -1,0 +1,72 @@
+{
+  "_meta": {
+    "version": 2,
+    "supersedes": "v1 (손그림/크림톤 무드)",
+    "reason": "사용자가 유니클로(Uniqlo) 디자인 시스템으로 전면 교체를 요청. 레드는 유니클로 시스템값(#ed1d24)을 채용 — 171studio 로고(public/brand/171studio-logo.png)의 레드 계열과도 가까움.",
+    "font_substitution": "TT Commons Pro는 상용 폰트라 사용 불가. 기하학적 산세리프 특성이 비슷한 Inter(라틴/숫자)로 대체하고, 한글은 Noto Sans KR을 페어링(next/font/google로 로드 가능). 로고 wordmark 자체는 절대 이 폰트로 재현하지 않는다 — 반드시 public/brand/171studio-logo.png 이미지 그대로 사용.",
+    "usage": "tailwind.config 또는 Tailwind v4 @theme에 반영. v1의 paper/wonky-*/blob/pill/tilt-*/soft·card·lifted·sticker 그림자·Gaegu/Gowun 폰트는 전부 폐기 대상."
+  },
+  "theme": {
+    "extend": {
+      "colors": {
+        "canvas": "#ffffff",
+        "surfaceMuted": "#f5f5f5",
+        "ink": { "DEFAULT": "#1a1a1a" },
+        "body": "#333333",
+        "secondary": "#666666",
+        "muted": "#999999",
+        "primary": { "DEFAULT": "#ed1d24", "hover": "#c8161c" },
+        "success": "#1a8917",
+        "info": "#0070c9",
+        "border": { "DEFAULT": "#e0e0e0", "strong": "#1a1a1a" },
+        "gray": { "50": "#f5f5f5", "100": "#eeeeee", "200": "#e0e0e0", "300": "#cccccc" },
+        "onPrimary": "#ffffff",
+        "scrim": "rgba(0,0,0,0.5)"
+      },
+      "fontFamily": {
+        "sans": ["var(--font-sans)", "system-ui", "sans-serif"]
+      },
+      "fontSize": {
+        "xs": ["0.75rem", { "lineHeight": "1.4", "fontWeight": "400" }],
+        "sm": ["0.8125rem", { "lineHeight": "1.46", "fontWeight": "400" }],
+        "base": ["0.875rem", { "lineHeight": "1.5", "fontWeight": "400" }],
+        "lg": ["1rem", { "lineHeight": "1.5", "fontWeight": "400" }],
+        "subtitle": ["1rem", { "lineHeight": "1.4", "fontWeight": "600" }],
+        "h3": ["1.125rem", { "lineHeight": "1.33", "fontWeight": "600" }],
+        "h2": ["1.375rem", { "lineHeight": "1.25", "fontWeight": "700" }],
+        "h1": ["1.75rem", { "lineHeight": "1.2", "fontWeight": "700" }],
+        "displayLg": ["2.25rem", { "lineHeight": "1.15", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+        "displayHero": ["3rem", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+        "price": ["1.125rem", { "lineHeight": "1.2", "fontWeight": "700" }],
+        "priceLg": ["1.5rem", { "lineHeight": "1.2", "fontWeight": "700" }],
+        "label": ["0.6875rem", { "lineHeight": "1.2", "letterSpacing": "0.03em", "fontWeight": "700" }]
+      },
+      "spacing": {
+        "section": "4rem"
+      },
+      "borderRadius": {
+        "none": "0px",
+        "sm": "2px",
+        "full": "9999px"
+      },
+      "boxShadow": {
+        "none": "none",
+        "border": "0 0 0 1px #e0e0e0",
+        "subtle": "0 1px 3px rgba(0,0,0,0.08)",
+        "floating": "0 2px 8px rgba(0,0,0,0.12)",
+        "modal": "0 4px 16px rgba(0,0,0,0.16)"
+      }
+    }
+  },
+  "components": {
+    "buttonPrimary": { "bg": "#ed1d24", "fg": "#ffffff", "radius": "2px", "padding": "14px 24px", "font": "15px/700", "hoverBg": "#c8161c" },
+    "buttonSecondary": { "bg": "#ffffff", "fg": "#1a1a1a", "border": "1px solid #1a1a1a", "radius": "2px", "padding": "14px 24px", "font": "15px/700", "hover": "invert to bg #1a1a1a fg #ffffff" },
+    "buttonDark": { "bg": "#1a1a1a", "fg": "#ffffff", "radius": "2px", "padding": "14px 24px", "font": "15px/700", "hoverBg": "#333333" },
+    "buttonDisabled": { "bg": "#eeeeee", "fg": "#999999", "radius": "2px", "padding": "14px 24px" },
+    "productTile": { "bg": "#ffffff", "radius": "0px", "shadow": "none", "imageAspect": "3/4", "separator": "grid gutter, no border/shadow" },
+    "input": { "bg": "#ffffff", "fg": "#1a1a1a", "border": "1px solid #cccccc", "radius": "2px", "padding": "12px 14px", "focusBorder": "1px solid #1a1a1a" },
+    "badgeSale": { "bg": "#ed1d24", "fg": "#ffffff", "radius": "0px", "padding": "2px 6px", "font": "11px/700 uppercase, +0.5px tracking" },
+    "badgeNew": { "bg": "#1a1a1a", "fg": "#ffffff", "radius": "0px", "padding": "2px 6px", "font": "11px/700 uppercase" },
+    "toast": { "bg": "#1a1a1a", "fg": "#ffffff", "radius": "2px", "padding": "14px 18px", "font": "14px/600" }
+  }
+}

@@ -1,26 +1,284 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* -------------------------------------------------------------------------- */
+/* 171studio 디자인 토큰 → Tailwind v4 @theme  (v2 — 유니클로 스타일)            */
+/* 출처: _workspace/01_ui-designer_tailwind-tokens.json (version 2)            */
+/* 토큰은 여기 한 곳에서만 정의한다. 컴포넌트는 이 토큰(유틸/변수)만 참조.        */
+/* 순백 캔버스 + 근흑 텍스트 + 레드 포인트 하나(#ed1d24) · 하드 코너 · 무그림자    */
+/* -------------------------------------------------------------------------- */
+
+@theme {
+  /* ── 색상 ─────────────────────────────────────────────── */
+  --color-canvas: #ffffff; /* 페이지 기본 배경 — 항상 순백 */
+  --color-surface-muted: #f5f5f5; /* 보조 섹션/이미지 플레이스홀더 배경 */
+
+  --color-ink: #1a1a1a; /* 제목·강한 텍스트·강한 보더 */
+  --color-body: #333333; /* 본문/설명 */
+  --color-secondary: #666666; /* 보조 텍스트·메타 */
+  --color-muted: #999999; /* placeholder·비활성·정가 취소선 */
+
+  --color-primary: #ed1d24; /* 유일한 포인트 컬러 */
+  --color-primary-hover: #c8161c;
+
+  --color-success: #1a8917;
+  --color-info: #0070c9;
+
+  --color-line: #e0e0e0; /* 기본 구분선·인풋 보더 */
+  --color-line-strong: #1a1a1a; /* 아웃라인 버튼·선택된 필터 */
+
+  --color-gray-50: #f5f5f5;
+  --color-gray-100: #eeeeee;
+  --color-gray-200: #e0e0e0;
+  --color-gray-300: #cccccc;
+
+  --color-on-primary: #ffffff;
+
+  /* ── 폰트 (next/font 가 html 에 --font-inter / --font-noto-kr 주입) ── */
+  --font-sans:
+    var(--font-inter), var(--font-noto-kr), system-ui, -apple-system,
+    sans-serif;
+
+  /* ── 타이포 스케일 (spec §3) ─────────────────────────── */
+  --text-xs: 0.75rem; /* 12 */
+  --text-xs--line-height: 1.4;
+  --text-sm: 0.8125rem; /* 13 */
+  --text-sm--line-height: 1.46;
+  --text-base: 0.875rem; /* 14 */
+  --text-base--line-height: 1.5;
+  --text-lg: 1rem; /* 16 */
+  --text-lg--line-height: 1.5;
+
+  --text-label: 0.6875rem; /* 11 · 태그 */
+  --text-label--line-height: 1.2;
+  --text-label--letter-spacing: 0.03em;
+  --text-label--font-weight: 700;
+
+  --text-subtitle: 1rem; /* 16/600 · 카드 제목 */
+  --text-subtitle--line-height: 1.4;
+  --text-subtitle--font-weight: 600;
+
+  --text-h3: 1.125rem; /* 18/600 */
+  --text-h3--line-height: 1.33;
+  --text-h3--font-weight: 600;
+
+  --text-h2: 1.375rem; /* 22/700 */
+  --text-h2--line-height: 1.25;
+  --text-h2--font-weight: 700;
+
+  --text-h1: 1.75rem; /* 28/700 */
+  --text-h1--line-height: 1.2;
+  --text-h1--font-weight: 700;
+
+  --text-display-lg: 2.25rem; /* 36/700 */
+  --text-display-lg--line-height: 1.15;
+  --text-display-lg--letter-spacing: -0.02em;
+  --text-display-lg--font-weight: 700;
+
+  --text-display-hero: 3rem; /* 48/700 */
+  --text-display-hero--line-height: 1.1;
+  --text-display-hero--letter-spacing: -0.02em;
+  --text-display-hero--font-weight: 700;
+
+  --text-price: 1.125rem; /* 18/700 */
+  --text-price--line-height: 1.2;
+  --text-price--font-weight: 700;
+
+  --text-price-lg: 1.5rem; /* 24/700 */
+  --text-price-lg--line-height: 1.2;
+  --text-price-lg--font-weight: 700;
+
+  /* ── 여백 ─────────────────────────────────────────────── */
+  --spacing-section: 4rem;
+
+  /* ── Radius — 하드 코너가 기본 ──────────────────────────── */
+  --radius-none: 0px;
+  --radius-sm: 2px; /* 버튼/인풋/칩만 */
+  --radius-full: 9999px;
+
+  /* ── Shadow — 평면이 기본, 떠 있는 UI에만 ──────────────── */
+  --shadow-border: 0 0 0 1px #e0e0e0;
+  --shadow-subtle: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --shadow-floating: 0 2px 8px rgba(0, 0, 0, 0.12);
+  --shadow-modal: 0 4px 16px rgba(0, 0, 0, 0.16);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  body {
+    background-color: var(--color-canvas);
+    color: var(--color-body);
+    font-family: var(--font-sans);
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    color: var(--color-ink);
+  }
+  ::selection {
+    background: var(--color-primary);
+    color: #ffffff;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* -------------------------------------------------------------------------- */
+/* 컴포넌트 클래스 (값은 위 토큰만 참조 → 톤 조정은 @theme 한 곳)                 */
+/* -------------------------------------------------------------------------- */
+@layer components {
+  /* Primary CTA — 담기/구매 (레드) */
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-weight: 700;
+    font-size: 0.9375rem; /* 15px */
+    line-height: 1;
+    color: #ffffff;
+    background-color: var(--color-primary);
+    border-radius: var(--radius-sm);
+    padding: 14px 24px;
+    transition: background-color 0.15s ease;
+  }
+  .btn-primary:hover {
+    background-color: var(--color-primary-hover);
+  }
+
+  /* Secondary — 아웃라인, hover 시 반전 */
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-weight: 700;
+    font-size: 0.9375rem;
+    line-height: 1;
+    color: var(--color-ink);
+    background-color: #ffffff;
+    border: 1px solid var(--color-ink);
+    border-radius: var(--radius-sm);
+    padding: 13px 23px; /* border 1px 보정 */
+    transition:
+      background-color 0.15s ease,
+      color 0.15s ease;
+  }
+  .btn-secondary:hover {
+    background-color: var(--color-ink);
+    color: #ffffff;
+  }
+
+  /* Dark — 중립 강한 액션 */
+  .btn-dark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-weight: 700;
+    font-size: 0.9375rem;
+    line-height: 1;
+    color: #ffffff;
+    background-color: var(--color-ink);
+    border-radius: var(--radius-sm);
+    padding: 14px 24px;
+    transition: background-color 0.15s ease;
+  }
+  .btn-dark:hover {
+    background-color: #333333;
+  }
+
+  /* Disabled — 결제하기 placeholder(범위 밖) */
+  .btn-disabled {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-weight: 700;
+    font-size: 0.9375rem;
+    line-height: 1;
+    color: var(--color-muted);
+    background-color: var(--color-gray-100);
+    border-radius: var(--radius-sm);
+    padding: 14px 24px;
+    cursor: not-allowed;
+  }
+
+  /* 배지 / 태그 — radius 0, 대문자 자간 (색은 컴포넌트에서 매핑) */
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    font-weight: 700;
+    font-size: 0.6875rem; /* 11px */
+    line-height: 1.2;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 3px 7px;
+    border-radius: var(--radius-none);
+  }
+
+  /* 필터 칩 */
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    padding: 8px 14px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--color-gray-300);
+    background-color: #ffffff;
+    color: var(--color-body);
+    transition:
+      border-color 0.15s ease,
+      background-color 0.15s ease,
+      color 0.15s ease;
+    cursor: pointer;
+  }
+  .chip:hover {
+    border-color: var(--color-ink);
+  }
+  .chip[data-active="true"] {
+    background-color: var(--color-ink);
+    border-color: var(--color-ink);
+    color: #ffffff;
+  }
+
+  /* 수량 스텝퍼 버튼 — Secondary 미니(정사각) */
+  .stepper-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--color-ink);
+    background-color: #ffffff;
+    border: 1px solid var(--color-gray-300);
+    border-radius: var(--radius-sm);
+    transition:
+      background-color 0.15s ease,
+      border-color 0.15s ease;
+  }
+  .stepper-btn:hover:not(:disabled) {
+    border-color: var(--color-ink);
+  }
+  .stepper-btn:disabled {
+    color: var(--color-muted);
+    cursor: not-allowed;
+  }
+
+  /* 인풋/셀렉트 */
+  .field {
+    background-color: #ffffff;
+    border: 1px solid var(--color-gray-300);
+    border-radius: var(--radius-sm);
+    padding: 10px 14px;
+    color: var(--color-ink);
+  }
+  .field:focus {
+    outline: none;
+    border-color: var(--color-ink);
+  }
 }
