@@ -16,9 +16,9 @@ export default function AboutPage() {
       {/* 헤더 */}
       <header>
         <p className="text-label text-primary">ABOUT</p>
-        <h1 className="mt-3 text-display-lg text-ink">171studio 이야기</h1>
+        <h1 className="mt-3 text-display-lg text-ink">171studio</h1>
         <p className="mt-3 text-lg text-secondary">
-          작은 골목 끝, 종이 냄새가 나는 셀렉트숍입니다.
+          느린 경주 속, 종이 냄새가 나는 독립서점입니다.
         </p>
       </header>
 
@@ -56,14 +56,17 @@ export default function AboutPage() {
             <p className="text-sm">{STORE_INFO.addressDetail}</p>
           </address>
 
-          {/* 약도 placeholder — TODO: 실제 지도 임베드(카카오/네이버 지도)로 교체 */}
-          <div className="mt-5 flex aspect-video items-center justify-center border border-line bg-surface-muted text-center">
-            <div className="text-muted">
-              <span className="text-sm">약도 이미지 자리</span>
-              <span className="mt-1 block text-xs">
-                (지도 임베드로 교체 예정)
-              </span>
-            </div>
+          {/* 약도 — 주소 기반 Google 지도 임베드 (API 키 불필요, STORE_INFO.address 바뀌면 자동 반영) */}
+          <div className="mt-5 aspect-video overflow-hidden border border-line bg-surface-muted">
+            <iframe
+              src={`https://www.google.com/maps?q=${encodeURIComponent(
+                STORE_INFO.address
+              )}&output=embed`}
+              className="h-full w-full border-0"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="171studio 오시는 길 지도"
+            />
           </div>
         </div>
 
