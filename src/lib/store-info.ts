@@ -1,6 +1,6 @@
 export const STORE_INFO = {
   address: "경북 경주시 원화로 178-4, 171스튜디오",
-  addressDetail: "월성동 행정복지센터 맞은편 큰 길 대로변 바넘커피 옆 서점",
+  addressDetail: "월성동 행정복지센터 맞은편 큰 길 대로변 바넘커피 옆",
   phone: "010-6064-3324",
   hours: [
     { day: "월,화,금", time: "11:00 – 19:00" },
